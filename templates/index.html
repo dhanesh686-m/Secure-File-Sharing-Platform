@@ -1,0 +1,30 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="text-center py-20">
+    <h1 class="text-5xl font-extrabold text-white mb-6">Welcome to SecureShare</h1>
+    <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+        Your private and secure file sharing platform. Upload files, encrypt them, and generate expiring, access-controlled links.
+    </p>
+    <div class="space-x-4">
+        {% if 'user_id' in session %}
+            <a href="{{ url_for('upload_file') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 shadow-lg">
+                Upload a File
+            </a>
+            <a href="{{ url_for('my_files') }}" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 shadow-lg">
+                View My Files
+            </a>
+        {% else %}
+            <a href="{{ url_for('register') }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 shadow-lg">
+                Get Started - Register
+            </a>
+            <a href="{{ url_for('login') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 shadow-lg">
+                Login
+            </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

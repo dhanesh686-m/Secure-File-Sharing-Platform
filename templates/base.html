@@ -1,0 +1,66 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureShare - {% block title %}{% endblock %}</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Dark background */
+            color: #e2e8f0; /* Light text */
+        }
+        .flash-message {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+        }
+        .flash-success { background-color: #2f855a; color: #fff; } /* Green */
+        .flash-danger { background-color: #c53030; color: #fff; }  /* Red */
+        .flash-warning { background-color: #dd6b20; color: #fff; } /* Orange */
+        .flash-info { background-color: #3182ce; color: #fff; }    /* Blue */
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <nav class="bg-gray-800 p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ url_for('index') }}" class="text-white text-2xl font-bold rounded-md px-3 py-2 hover:bg-gray-700 transition duration-300">SecureShare</a>
+            <div class="flex items-center space-x-4">
+                {% if 'user_id' in session %}
+                    <a href="{{ url_for('upload_file') }}" class="text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300">Upload File</a>
+                    <a href="{{ url_for('my_files') }}" class="text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300">My Files</a>
+                    <span class="text-gray-300 text-lg font-medium">Welcome, {{ session['username'] }}!</span>
+                    <a href="{{ url_for('logout') }}" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-lg font-medium transition duration-300 shadow-md">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-lg font-medium transition duration-300 shadow-md">Login</a>
+                    <a href="{{ url_for('register') }}" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-lg font-medium transition duration-300 shadow-md">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-8 p-6 flex-grow">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="mb-6">
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 p-4 mt-8 text-center text-gray-400 shadow-inner">
+        <div class="container mx-auto">
+            <p>&copy; 2024 SecureShare. For Educational Use Only.</p>
+        </div>
+    </footer>
+</body>
+</html>

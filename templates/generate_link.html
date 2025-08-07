@@ -1,0 +1,36 @@
+<!-- templates/generate_link.html -->
+{% extends "base.html" %}
+
+{% block title %}Generate Link for {{ file.original_filename }}{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-gray-800 p-8 rounded-lg shadow-xl">
+    <h1 class="text-3xl font-bold text-white mb-6 text-center">Generate Share Link for "{{ file.original_filename }}"</h1>
+    <form method="POST" action="{{ url_for('generate_link', file_id=file.id) }}">
+        <div class="mb-4">
+            <label for="expires_in_hours" class="block text-gray-300 text-sm font-bold mb-2">Link Expiration (hours):</label>
+            <input type="number" id="expires_in_hours" name="expires_in_hours" min="0" placeholder="e.g., 24 (leave empty for no expiration)"
+                   class="shadow appearance-none border rounded-md w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 border-gray-600 focus:border-blue-500">
+            <p class="text-gray-400 text-xs mt-1">Enter 0 or leave empty for a link that never expires.</p>
+        </div>
+        <div class="mb-6">
+            <label for="max_downloads" class="block text-gray-300 text-sm font-bold mb-2">Maximum Downloads:</label>
+            <input type="number" id="max_downloads" name="max_downloads" min="0" placeholder="e.g., 5 (leave empty for unlimited)"
+                   class="shadow appearance-none border rounded-md w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 border-gray-600 focus:border-blue-500">
+            <p class="text-gray-400 text-xs mt-1">Enter 0 or leave empty for unlimited downloads.</p>
+        </div>
+        <div class="flex items-center justify-between">
+            <button type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md focus:outline-none focus:shadow-outline transition duration-300 w-full shadow-md">
+                Generate Link
+            </button>
+        </div>
+    </form>
+    <div class="mt-8 text-center">
+        <a href="{{ url_for('my_files') }}" class="text-blue-400 hover:text-blue-300 font-bold text-lg inline-flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path></svg>
+            Back to My Files
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!-- templates/upload.html -->
+{% extends "base.html" %}
+
+{% block title %}Upload File{% endblock %}
+
+{% block content %}
+<div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-lg shadow-xl">
+    <h1 class="text-3xl font-bold text-white mb-6 text-center">Upload a New File</h1>
+    <form method="POST" action="{{ url_for('upload_file') }}" enctype="multipart/form-data">
+        <div class="mb-6">
+            <label for="file" class="block text-gray-300 text-sm font-bold mb-2">Select File:</label>
+            <input type="file" id="file" name="file" required
+                   class="block w-full text-sm text-gray-300
+                          file:mr-4 file:py-2 file:px-4
+                          file:rounded-md file:border-0
+                          file:text-sm file:font-semibold
+                          file:bg-blue-500 file:text-white
+                          hover:file:bg-blue-600
+                          transition duration-300
+                          cursor-pointer">
+            <p class="mt-2 text-sm text-gray-400">Max file size not enforced in this demo.</p>
+        </div>
+        <div class="flex items-center justify-between">
+            <button type="submit"
+                    class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md focus:outline-none focus:shadow-outline transition duration-300 w-full shadow-md">
+                Upload & Encrypt
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
