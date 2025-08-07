@@ -64,27 +64,36 @@ iii)Inbound security group rules:
 
    After Launching the Instance , Check the status as Running and then check for your Public IP address.
 
-# Upload your app.py and all the .html files present in templates folder
+# Connect EC2 instance using .pem file
 
-From your local Kali Linux terminal :scp -i /path/to/your/key-pair-name.pem /path/to/local/app.py ec2-user@YOUR_PUBLIC_IP_ADDRESS:/home/ec2-user
+  1.Locate Your .pem File 📂
+
+  2.Set Correct Permissions using command : chmod 400 /path/to/your/key-pair-name.pem
+
+   Replace /path/to/your/key-pair-name.pem with the actual path and filename of your .pem
+
+  3.Connect to Your EC2 Instance via SSH 🚀 using command : ssh -i /path/to/your/key-pair-name.pem ec2-user@YOUR_PUBLIC_IP_ADDRESS
+
+   Replace /path/to/your/key-pair-name.pem with the actual path and filename of your .pem
+
+# Upload your app.py and all the .html files present in templates folder
+  
+  ### For app.py
+  
+   From your local Kali Linux terminal :scp -i /path/to/your/key-pair-name.pem /path/to/local/app.py ec2-user@YOUR_PUBLIC_IP_ADDRESS:/home/ec2-user
+
+  ### For .html files
+
+   From your EC2 terminal make a dir using command : mkdir templates
+  
+   From your local Kali Linux terminal :scp -i /path/to/your/key-pair-name.pem /path/to/local/app.py ec2-user@YOUR_PUBLIC_IP_ADDRESS:/home/ec2-user/templates
 
   Replace /path/to/your/key-pair-name.pem with the actual path and filename of your .pem
   
   Replace /path/to/local/app.py with actual path and filename of your app.py file and .html files
 
-# Connect EC2 instance using .pem file
 
-1.Locate Your .pem File 📂
-
-2.Set Correct Permissions using command : chmod 400 /path/to/your/key-pair-name.pem
-
-  Replace /path/to/your/key-pair-name.pem with the actual path and filename of your .pem
-
-3.Connect to Your EC2 Instance via SSH 🚀 using command : ssh -i /path/to/your/key-pair-name.pem ec2-user@YOUR_PUBLIC_IP_ADDRESS
-
-  Replace /path/to/your/key-pair-name.pem with the actual path and filename of your .pem
-
-## Run app.py using the command : python3 app.py
+## Run app.py using the command from EC2 terminal: python3 app.py
 
 ## Web Access
   
