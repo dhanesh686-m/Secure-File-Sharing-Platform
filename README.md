@@ -34,7 +34,7 @@ This is a Flask-based web application that provides a secure way to share files.
 
    i)Create new key pair. Give it a Key pair name
     
-   ii)Click Create key pair. Your private key file (.pem) will be downloaded automatically. Keep this file secure and            private! You will need it to SSH into               your instance.
+   ii)Click Create key pair. Your private key file (.pem) will be downloaded automatically. Keep this file secure and private! You will need it to SSH into your instance.
    
    iii)If you already have a key pair, select it from the dropdown.
 
@@ -80,7 +80,7 @@ iii)Inbound security group rules:
   
   ### For app.py
   
-   From your local Kali Linux terminal :scp -i /path/to/your/key-pair-name.pem /path/to/local/app.py ec2-user@YOUR_PUBLIC_IP_ADDRESS:/home/ec2-user
+   From your local terminal :scp -i /path/to/your/key-pair-name.pem /path/to/local/app.py ec2-user@YOUR_PUBLIC_IP_ADDRESS:/home/ec2-user
 
   ### For .html files
 
@@ -93,7 +93,19 @@ iii)Inbound security group rules:
   Replace /path/to/local/app.py with actual path and filename of your app.py file and .html files
 
 
-## Run app.py using the command from EC2 terminal: python3 app.py
+## Run app.py using the command from EC2 terminal
+
+  1.Install some dependencies using the following Commands :
+     
+         i)sudo apt update
+     
+         ii)sudo apt install python3-pip
+     
+         iii)pip3 install flask
+
+         iv)pip3 install flask_sqlalchemy
+         
+  2.python3 app.py
 
 ## Web Access
   
